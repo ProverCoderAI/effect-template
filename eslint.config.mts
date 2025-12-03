@@ -59,7 +59,16 @@ export default defineConfig(
 		...sonarjs.configs.recommended.rules,
 		...unicorn.configs.recommended.rules,
 		"no-restricted-imports": ["error", {
-			paths: ["ts-pattern"],
+			paths: [
+				{
+					name: "ts-pattern",
+					message: "Use Effect.Match instead of ts-pattern.",
+				},
+				{
+					name: "zod",
+					message: "Use @effect/schema for schemas and validation.",
+				},
+			],
 		}],
 		"codegen/codegen": "error",
 		"import/first": "error",
