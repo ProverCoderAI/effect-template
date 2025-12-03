@@ -2,6 +2,7 @@
 // @ts-check
 import eslint from '@eslint/js';
 import { defineConfig } from 'eslint/config';
+import type { Linter } from "eslint";
 import tseslint from 'typescript-eslint';
 import vitest from "eslint-plugin-vitest";
 import suggestMembers from "@ton-ai-core/eslint-plugin-suggest-members";
@@ -38,7 +39,7 @@ export default defineConfig(
 		import: fixupPluginRules(importPlugin),
 		"sort-destructure-keys": sortDestructureKeys,
 		"simple-import-sort": simpleImportSort,
-		codegen,
+		codegen: { rules: codegen.rules } satisfies Linter.Plugin,
 	},
 	files: ["**/*.ts"],
 	settings: {
