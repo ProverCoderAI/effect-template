@@ -73,6 +73,7 @@
 		"skipLibCheck": false,
 
 		"forceConsistentCasingInFileNames": true,
+		"plugins": [{ "name": "@effect/language-service" }],
 
 		// ═══════════════════════════════════════════════════════════════════════════
 		// OUTPUT CONFIGURATION
