@@ -44,7 +44,7 @@ export default defineConfig(
 		"simple-import-sort": simpleImportSort,
 		codegen: codegenPlugin,
 	},
-	files: ["**/*.ts", '**/*.{test,spec}.{ts,tsx}', 'tests/**', '**/__tests__/**'],
+	files: ["**/*.ts", '**/*.{test,spec}.{ts,tsx}', '**/tests/**', '**/__tests__/**'],
 	settings: {
 		"import/parsers": {
 			"@typescript-eslint/parser": [".ts", ".tsx"],
@@ -254,5 +254,5 @@ export default defineConfig(
   },
 
   // 4) Глобальные игноры
-  { ignores: ['dist/**', 'build/**', 'coverage/**'] },
+  { ignores: ['dist/**', 'build/**', 'coverage/**', '**/dist/**'] },
 );

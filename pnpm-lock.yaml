@@ -6,7 +6,9 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  packages/app:
     dependencies:
       '@effect/cli':
         specifier: ^0.72.1
@@ -65,7 +67,7 @@ importers:
         version: 0.3.2
       '@effect/language-service':
         specifier: latest
-        version: 0.59.0
+        version: 0.62.4
       '@effect/vitest':
         specifier: ^0.27.0
         version: 0.27.0(effect@3.19.8)(vitest@3.2.4(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.2))
@@ -386,8 +388,8 @@ packages:
       lmdb:
         optional: true
 
-  '@effect/language-service@0.59.0':
-    resolution: {integrity: sha512-jFl5oqxPrWNoKL6u8m8i1xbJ9hT9YeuPY25tMiuB7YU1GjIHJHXwBbVspMsQ8JdDrP+vdXJj+yX/Tk6J2bbvuw==}
+  '@effect/language-service@0.62.4':
+    resolution: {integrity: sha512-IPe/oGOILtzUIUdhhaz6e2JcnGymPADnjI03f1xOe+LaPLDg/AsRmkY87jhbtb/6qg8NVzlU+ZK4s0JoIMW/yQ==}
     hasBin: true
 
   '@effect/platform-node-shared@0.56.0':
@@ -3913,7 +3915,7 @@ snapshots:
       effect: 3.19.8
       uuid: 11.1.0
 
-  '@effect/language-service@0.59.0': {}
+  '@effect/language-service@0.62.4': {}
 
   '@effect/platform-node-shared@0.56.0(@effect/cluster@0.55.0(@effect/platform@0.93.6(effect@3.19.8))(@effect/rpc@0.72.2(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(@effect/sql@0.48.6(@effect/experimental@0.57.10(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(@effect/workflow@0.15.1(@effect/experimental@0.57.10(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(@effect/platform@0.93.6(effect@3.19.8))(@effect/rpc@0.72.2(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(effect@3.19.8))(effect@3.19.8))(@effect/platform@0.93.6(effect@3.19.8))(@effect/rpc@0.72.2(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(@effect/sql@0.48.6(@effect/experimental@0.57.10(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(@effect/platform@0.93.6(effect@3.19.8))(effect@3.19.8))(effect@3.19.8)':
     dependencies:

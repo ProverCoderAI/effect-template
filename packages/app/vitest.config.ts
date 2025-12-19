@@ -7,8 +7,13 @@
 // EFFECT: Effect<TestReport, never, TestEnvironment>
 // COMPLEXITY: O(n) test execution where n = |test_files|
 
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
 	plugins: [tsconfigPaths()], // Resolves @/* paths from tsconfig
@@ -75,7 +80,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			"@": "/src",
+			"@": resolve(__dirname, "src"),
 		},
 	},
 });
