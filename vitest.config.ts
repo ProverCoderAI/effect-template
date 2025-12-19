@@ -61,6 +61,15 @@ export default defineConfig({
 		// WHY: Vitest uses worker threads by default (faster than Jest's processes)
 		// COMPLEXITY: O(n/k) where n = tests, k = worker_count
 		// NOTE: Vitest runs tests in parallel by default, no additional config needed
+		// CHANGE: Serialize test workers to avoid global state races (process.argv, console mocks)
+		// WHY: Tests mutate Node globals; single worker guarantees isolation without flakiness
+		// INVARIANT: ∀ test files: no concurrent mutation of process globals
+		poolOptions: {
+			threads: {
+				minThreads: 1,
+				maxThreads: 1,
+			},
+		},
 
 		// CHANGE: Clear mocks between tests (Jest equivalence)
 		// WHY: Prevent test contamination, ensure test independence

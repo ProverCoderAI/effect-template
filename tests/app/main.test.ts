@@ -15,14 +15,16 @@ const withArgv = (nextArgv: ReadonlyArray<string>) =>
     Effect.sync(() => {
       const previous = process.argv
       process.argv = [...nextArgv]
+      vi.resetModules()
       return previous
     }),
     (previous) =>
       Effect.sync(() => {
         process.argv = previous
-        vi.resetModules()
       })
   )
+
+const importMain = Effect.tryPromise(() => import("../../src/app/main.js"))
 
 describe("main program", () => {
   it.effect("logs default greeting when no args", () =>
@@ -30,10 +32,10 @@ describe("main program", () => {
       Effect.gen(function*(_) {
         const logSpy = yield* _(withLogSpy)
         yield* _(withArgv(["node", "main"]))
-        yield* _(Effect.sync(() => vi.resetModules()))
-        yield* _(Effect.promise(() => import("../../src/app/main.js")))
+        yield* _(importMain)
         yield* _(Effect.sync(() => {
-          expect(logSpy).toHaveBeenCalledWith("Hello from Effect!")
+          expect(logSpy).toHaveBeenCalledTimes(1)
+          expect(logSpy).toHaveBeenLastCalledWith("Hello from Effect!")
         }))
       })
     ))
@@ -43,10 +45,10 @@ describe("main program", () => {
       Effect.gen(function*(_) {
         const logSpy = yield* _(withLogSpy)
         yield* _(withArgv(["node", "main", "Alice"]))
-        yield* _(Effect.sync(() => vi.resetModules()))
-        yield* _(Effect.promise(() => import("../../src/app/main.js")))
+        yield* _(importMain)
         yield* _(Effect.sync(() => {
-          expect(logSpy).toHaveBeenCalledWith("Hello, Alice!")
+          expect(logSpy).toHaveBeenCalledTimes(1)
+          expect(logSpy).toHaveBeenLastCalledWith("Hello, Alice!")
         }))
       })
     ))
