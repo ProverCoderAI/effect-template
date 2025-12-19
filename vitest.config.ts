@@ -21,7 +21,7 @@ export default defineConfig({
 
 		// CHANGE: Match Jest's test file patterns
 		// INVARIANT: Same test discovery as Jest
-		include: ["test/**/*.{test,spec}.ts"],
+		include: ["tests/**/*.{test,spec}.ts"],
 		exclude: ["node_modules", "dist", "dist-test"],
 
 		// CHANGE: Coverage with 100% threshold for CORE (same as Jest)

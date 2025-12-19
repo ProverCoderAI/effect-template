@@ -119,6 +119,10 @@ export default defineConfig(
 					message: "Запрещено 'unknown'.",
 				},
 				{
+					selector: "TryStatement",
+					message: "Используй Effect.try / catchAll вместо try/catch в core/app/domain.",
+				},
+				{
 					selector: "SwitchStatement",
 					message: [
 						"Switch statements are forbidden in functional programming paradigm.",
@@ -163,6 +167,7 @@ export default defineConfig(
 					message: "Do not use spread arguments in Array.push",
 				},
 		],
+		"no-throw-literal": "error",
 		"@typescript-eslint/no-restricted-types": [
 				"error",
 				{
@@ -184,7 +189,7 @@ export default defineConfig(
 				},
 			],
 		"@typescript-eslint/use-unknown-in-catch-callback-variable": "off",
-		"no-throw-literal": "off",
+		// "no-throw-literal": "off",
 		"@typescript-eslint/only-throw-error": [
 			"error",
 			{ allowThrowingUnknown: false, allowThrowingAny: false },
