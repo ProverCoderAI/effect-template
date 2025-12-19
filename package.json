@@ -16,7 +16,7 @@
     "check": "pnpm run typecheck",
     "prestart": "pnpm run build",
     "start": "node dist/main.js",
-    "test": "vitest run",
+    "test": "npx @ton-ai-core/vibecode-linter tests/ && vitest run",
     "typecheck": "tsc --noEmit"
   },
   "repository": {

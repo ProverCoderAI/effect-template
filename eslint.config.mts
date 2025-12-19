@@ -44,7 +44,7 @@ export default defineConfig(
 		"simple-import-sort": simpleImportSort,
 		codegen: codegenPlugin,
 	},
-	files: ["**/*.ts"],
+	files: ["**/*.ts", '**/*.{test,spec}.{ts,tsx}', 'tests/**', '**/__tests__/**'],
 	settings: {
 		"import/parsers": {
 			"@typescript-eslint/parser": [".ts", ".tsx"],
@@ -242,6 +242,8 @@ export default defineConfig(
       '@eslint-community/eslint-comments/no-use': 'off',
       // Disable line count limit for E2E tests that contain multiple test cases
       'max-lines-per-function': 'off',
+      // `it.effect` is not recognized by sonar rule; disable to avoid false positives
+      'sonarjs/no-empty-test-file': 'off',
     },
   },
 

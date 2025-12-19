@@ -93,6 +93,12 @@
 	// ═══════════════════════════════════════════════════════════════════════════
 	// PROJECT STRUCTURE
 	// ═══════════════════════════════════════════════════════════════════════════
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+	"include": [
+		"src/**/*",
+		// CHANGE: add tests to TS project graph so ESLint projectService resolves them
+		// WHY: linting currently fails with "file was not found by the project service"
+		// INVARIANT: ∀f ∈ tests: typechecked(f) → lints(f)
+		"tests/**/*"
+	],
+	"exclude": ["node_modules", "dist"]
 }
