@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "pnpm --filter @effect-template/app build",
+    "check": "pnpm --filter @effect-template/app check",
     "dev": "pnpm --filter @effect-template/app dev",
     "lint": "pnpm --filter @effect-template/app lint",
     "lint:tests": "pnpm --filter @effect-template/app lint:tests",
