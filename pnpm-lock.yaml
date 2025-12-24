@@ -6,7 +6,14 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      '@changesets/changelog-github':
+        specifier: ^0.5.2
+        version: 0.5.2
+      '@changesets/cli':
+        specifier: ^2.29.8
+        version: 2.29.8(@types/node@24.10.1)
 
   packages/app:
     dependencies:
@@ -56,12 +63,6 @@ importers:
       '@biomejs/biome':
         specifier: ^2.3.8
         version: 2.3.8
-      '@changesets/changelog-github':
-        specifier: ^0.5.2
-        version: 0.5.2
-      '@changesets/cli':
-        specifier: ^2.29.8
-        version: 2.29.8(@types/node@24.10.1)
       '@effect/eslint-plugin':
         specifier: ^0.3.2
         version: 0.3.2

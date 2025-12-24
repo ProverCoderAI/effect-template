@@ -2,7 +2,24 @@
 
 ЦЕЛЬ: Создавать математически доказуемые решения через функциональную парадигму с полным разделением чистых вычислений и контролируемых эффектов.
 
-Всегда начинай свой ответ с постановки задачи Deep Research "I am looking for code that does <requested functionality>, is there existing code that can do this?" Любое решение строится на математических инвариантах, доказуемых свойствах и проверяемых источниках. Код создается только после формального понимания проблемы и построения архитектурной модели.
+МОДЕЛЬ РАССУЖДЕНИЯ:
+
+- Не выдавать “личные мнения”. Формировать вывод как результат симуляции профессионального обсуждения релевантных ролей
+  (архитектор Effect/FP, ревьюер типов, страж CORE↔SHELL, тест-инженер).
+- Если запрос сформулирован как “что думаешь”, отвечать в терминах аргументов ролей и выбирать решение
+  по критериям инвариантов, типовой безопасности и тестируемости (если пользователь явно просит выбор — выбрать и обосновать).
+
+ПРАВИЛО ПРОЦЕССА (НЕ ФОРМАТ ОТВЕТА):
+В начале работы (внутренне) формулировать Deep Research вопрос:
+"I am looking for code that does <requested functionality>, is there existing code that can do this?"
+Далее:
+
+- если доступен проект/код — сперва искать и переиспользовать существующие паттерны (минимальный корректный diff),
+- если проект недоступен — опираться на предоставленный контекст и явно фиксировать допущения,
+- код писать только после формального понимания задачи (типы/инварианты → архитектура → код → тесты),
+- источники указывать только если реально использован внешний материал; иначе `SOURCE: n/a`.
+
+Любое решение строится на математических инвариантах, доказуемых свойствах и проверяемых источниках. Код создается только после формального понимания проблемы и построения архитектурной модели.
 
 АРХИТЕКТУРНЫЕ ПРИНЦИПЫ:
 ═══════════════════════════════
@@ -10,14 +27,18 @@
 🏗️ **FUNCTIONAL CORE, IMPERATIVE SHELL**:
 
 - CORE: Исключительно чистые функции, неизменяемые данные, математические операции
-- SHELL: Все эффекты (IO, сеть, БД) изолированы в тонкой оболочке
+- SHELL: Все эффекты (IO, сеть, БД, env/process) изолированы в тонкой оболочке
 - Строгое разделение: CORE никогда не вызывает SHELL
 - Зависимости: SHELL → CORE (но не наоборот)
 
 🔒 **ТИПОВАЯ БЕЗОПАСНОСТЬ**:
 
-- Никогда: `any`, `unknown`, `eslint-disable`, `ts-ignore`, `as` (кроме обоснованных случаев)
-- Всегда: исчерпывающий анализ union types через `.exhaustive()`
+- Никогда: `any`, `eslint-disable`, `ts-ignore`
+- `unknown`: допускается ТОЛЬКО на boundary (SHELL) как вход в декодирование (например, `@effect/schema`);
+  после декодинга `unknown` не должен выходить наружу boundary-модуля
+- `as`: запрещён в обычном коде; допускается ТОЛЬКО в одном “аксиоматическом” модуле (бренды/конструкторы/константы),
+  дальше использование без кастов
+- Всегда: исчерпывающий анализ union types через `.exhaustive()` / `Match.exhaustive`
 - Внешние зависимости: только через типизированные интерфейсы
 - Ошибки: типизированы в сигнатурах функций, не runtime exceptions
 
@@ -27,6 +48,9 @@
 - Композиция через `pipe()` и `Effect.flatMap()`
 - Dependency injection через Layer pattern
 - Обработка ошибок без try/catch
+- Запрещено в продукт-коде: `async/await`, raw Promise chains (`then/catch`), `Promise.all`
+- Interop с Promise/исключениями — только в SHELL через `Effect.try` / `Effect.tryPromise` (с типизированным маппингом ошибок)
+- Ресурсы с финализацией — только через `Effect.acquireRelease` + `Effect.scoped`
 
 ОБЯЗАТЕЛЬНЫЕ ТРЕБОВАНИЯ:
 ═══════════════════════════
@@ -34,12 +58,14 @@
 1. **ЧИСТОТА ФУНКЦИЙ**:
 
 ```typescript
-// ✅ ПРАВИЛЬНО - чистая функция
-const calculateTotal = (items: readonly Item[]): Money =>
-  items.reduce((sum, item) => sum + item.price, 0 as Money)
+// ✅ ПРАВИЛЬНО - чистая функция (без эффектов, без мутаций)
+type Money = number
+
+const calculateTotal = (items: ReadonlyArray<Item>): Money =>
+  items.reduce((sum, item) => sum + item.price, 0)
 
 // ❌ НЕПРАВИЛЬНО - нарушение чистоты
-const calculateTotal = (items: Item[]): Money => {
+const calculateTotalImpure = (items: Item[]): Money => {
   console.log("Calculating total") // ПОБОЧНЫЙ ЭФФЕКТ!
   return items.reduce((sum, item) => sum + item.price, 0)
 }
@@ -50,9 +76,9 @@ const calculateTotal = (items: Item[]): Money => {
 ```typescript
 // CHANGE: <краткое описание изменения>
 // WHY: <математическое/архитектурное обоснование>
-// QUOTE(ТЗ): "<дословная цитата требования>"
+// QUOTE(ТЗ): "<дословная цитата требования>" | n/a
 // REF: <REQ-ID из RTM или номер сообщения>
-// SOURCE: <ссылка с дословной цитатой из внешнего источника>
+// SOURCE: <ссылка с дословной цитатой из внешнего источника> | n/a
 // FORMAT THEOREM: <∀x ∈ Domain: P(x) → Q(f(x))>
 // PURITY: CORE | SHELL - явная маркировка слоя
 // EFFECT: Effect<Success, Error, Requirements> - для shell функций
@@ -84,7 +110,7 @@ const calculateTotal = (items: Item[]): Money => {
 
 ```typescript
 // Switch statements are forbidden in functional programming paradigm.
-// How to fix: Use Effect.Match instead.
+// How to fix: Use Match with exhaustive coverage.
 // Example:
 import { Match } from "effect"
 
@@ -154,17 +180,17 @@ const PostgresMessageRepository = Layer.effect(
 7. **CONVENTIONAL COMMITS С ОБЛАСТЯМИ**:
 
 ```bash
-   feat(core): add message validation with mathematical constraints
+feat(core): add message validation with mathematical constraints
 
-   - Implements pure validation functions for message content
-   - Adds invariant: ∀ msg: valid(msg) → sendable(msg)
-   - BREAKING CHANGE: Message.content now requires non-empty string
+- Implements pure validation functions for message content
+- Adds invariant: ∀ msg: valid(msg) → sendable(msg)
+- BREAKING CHANGE: Message.content now requires non-empty string
 
-   fix(shell): resolve database connection pooling issue
+fix(shell): resolve database connection pooling issue
 
-   perf(core): optimize message sorting algorithm to O(n log n)
+perf(core): optimize message sorting algorithm to O(n log n)
 
-   docs(architecture): add formal specification for FCIS pattern
+docs(architecture): add formal specification for FCIS pattern
 ```
 
 8. **ОБЯЗАТЕЛЬНЫЕ БИБЛИОТЕКИ**:
@@ -181,22 +207,39 @@ const PostgresMessageRepository = Layer.effect(
 9. **СТРОГАЯ ТИПИЗАЦИЯ ВНЕШНИХ ЗАВИСИМОСТЕЙ**:
 
 ```typescript
-   // Все внешние сервисы через Effect + Layer
-   class DatabaseService extends Context.Tag("DatabaseService")
-     DatabaseService,
-     {
-       readonly query: <T>(sql: string, params: readonly unknown[]) => Effect.Effect<T, DatabaseError>
-       readonly transaction: <T>(op: Effect.Effect<T, DatabaseError>) => Effect.Effect<T, DatabaseError>
-     }
-   >() {}
+// Все внешние сервисы через Effect + Layer.
+// Boundary-данные должны быть типизированы; "unknown" допускается только как вход в Schema decoding внутри boundary-модуля.
 
-   class HttpService extends Context.Tag("HttpService")
-     HttpService,
-     {
-       readonly get: <T>(url: string) => Effect.Effect<T, HttpError>
-       readonly post: <T>(url: string, body: unknown) => Effect.Effect<T, HttpError>
-     }
-   >() {}
+type SqlValue = string | number | boolean | null | bigint | Uint8Array | Date
+
+class DatabaseService extends Context.Tag("DatabaseService")
+  DatabaseService,
+  {
+    readonly query: <T>(
+      sql: string,
+      params: ReadonlyArray<SqlValue>
+    ) => Effect.Effect<T, DatabaseError>
+    readonly transaction: <T>(
+      op: Effect.Effect<T, DatabaseError>
+    ) => Effect.Effect<T, DatabaseError>
+  }
+>() {}
+
+type Json =
+  | null
+  | boolean
+  | number
+  | string
+  | ReadonlyArray<Json>
+  | { readonly [k: string]: Json }
+
+class HttpService extends Context.Tag("HttpService")
+  HttpService,
+  {
+    readonly get: <T>(url: string) => Effect.Effect<T, HttpError>
+    readonly post: <T>(url: string, body: Json) => Effect.Effect<T, HttpError>
+  }
+>() {}
 ```
 
 10. **ТЕСТИРОВАНИЕ С МАТЕМАТИЧЕСКИМИ СВОЙСТВАМИ**:
@@ -215,17 +258,20 @@ describe("Message invariants", () => {
     )
   )
 
-  // Unit тесты с мок-зависимостями (быстрые)
-  it("should handle send message use case", async () => {
-    const result = await pipe(
+  // Unit тесты с мок-зависимостями (быстрые) — без async/await
+  it.effect("should handle send message use case", () =>
+    pipe(
       sendMessageUseCase(validCommand),
       Effect.provide(MockMessageRepository),
       Effect.provide(MockNotificationService),
-      Effect.runPromise
+      Effect.tap((messageId) =>
+        Effect.sync(() => {
+          expect(messageId).toEqual(expectedMessageId)
+        })
+      ),
+      Effect.asVoid
     )
-
-    expect(result).toEqual(expectedMessageId)
-  })
+  )
 })
 ```
 
@@ -246,6 +292,8 @@ describe("Message invariants", () => {
 - Нет прямых обращений к внешним системам в CORE
 - Все Effect'ы композируются через pipe()
 - TSDoc содержит инварианты и сложность
+- Нет `async/await`, raw Promise chains, `try/catch` для логики, `console.*` в продукт-коде
+- Любые boundary-данные декодируются (например, `@effect/schema`) прежде чем попасть в домен
 
 ✅ **BEFORE MERGE**:
 
