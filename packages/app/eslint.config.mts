@@ -4,7 +4,7 @@ import eslint from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import vitest from "eslint-plugin-vitest";
-import suggestMembers from "@ton-ai-core/eslint-plugin-suggest-members";
+import suggestMembers from "@prover-coder-ai/eslint-plugin-suggest-members";
 import sonarjs from "eslint-plugin-sonarjs";
 import unicorn from "eslint-plugin-unicorn";
 import * as effectEslint from "@effect/eslint-plugin";
