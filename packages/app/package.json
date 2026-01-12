@@ -11,6 +11,7 @@
     "dev": "vite build --watch --ssr src/app/main.ts",
     "lint": "npx @ton-ai-core/vibecode-linter src/",
     "lint:tests": "npx @ton-ai-core/vibecode-linter tests/",
+    "lint:effect": "npx eslint --config eslint.effect-ts-check.config.mjs .",
     "check": "pnpm run typecheck",
     "prestart": "pnpm run build",
     "start": "node dist/main.js",

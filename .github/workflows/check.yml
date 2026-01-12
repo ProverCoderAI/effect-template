@@ -61,3 +61,13 @@ jobs:
       - name: Install global linter dependencies
         run: npm install -g typescript @biomejs/biome
       - run: pnpm test
+
+  lint-effect:
+    name: Lint Effect-TS
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        uses: ./.github/actions/setup
+      - run: pnpm lint:effect

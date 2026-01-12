@@ -16,6 +16,7 @@
     "dev": "pnpm --filter @effect-template/app dev",
     "lint": "pnpm --filter @effect-template/app lint",
     "lint:tests": "pnpm --filter @effect-template/app lint:tests",
+    "lint:effect": "pnpm --filter @effect-template/app lint:effect",
     "test": "pnpm --filter @effect-template/app test",
     "typecheck": "pnpm --filter @effect-template/app typecheck",
     "start": "pnpm --filter @effect-template/app start"
