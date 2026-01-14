@@ -85,8 +85,8 @@ importers:
         specifier: 9.39.1
         version: 9.39.1
       '@prover-coder-ai/eslint-plugin-suggest-members':
-        specifier: ^0.0.3
-        version: 0.0.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+        specifier: ^0.0.9
+        version: 0.0.9(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
       '@ton-ai-core/vibecode-linter':
         specifier: ^1.0.6
         version: 1.0.6
@@ -994,8 +994,8 @@ packages:
     resolution: {integrity: sha512-vWWVbYYBBN/kweokmURicokyg7crzcDZo9/naziv8B8RSWrLWFpq5Xl0ro6QCQKgRmb6O78Qy9uQT+Fp79RxsA==}
     engines: {node: '>=16.14'}
 
-  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.3':
-    resolution: {integrity: sha512-/6JWTFOsfqEBRiUYNHaWO0pS530HITutAbmc9+ie7qqjhD9SVWTbMoCyYuokKgTV8BkGmCqA040wAqSI2fnKDQ==}
+  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.9':
+    resolution: {integrity: sha512-oYhBtKxVh7bmcQFivVGcPTC3sIvnB03PeaY2V7fL3CnVs+dxxS6GzZ9XF1/3ZQAYCf0AlArw6os3bR5u3XOB6A==}
 
   '@rollup/rollup-android-arm-eabi@4.53.3':
     resolution: {integrity: sha512-mRSi+4cBjrRLoaal2PnqH82Wqyb+d3HsPUN/W+WslCXsZsyHa9ZeQQX/pQsZaVIWDkPcpV6jJ+3KLbTbgnwv8w==}
@@ -4561,7 +4561,7 @@ snapshots:
 
   '@pnpm/deps.graph-sequencer@1.0.0': {}
 
-  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
+  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.9(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@effect/cli': 0.73.0(@effect/platform@0.94.1(effect@3.19.14))(@effect/printer-ansi@0.47.0(@effect/typeclass@0.38.0(effect@3.19.8))(effect@3.19.8))(@effect/printer@0.47.0(@effect/typeclass@0.38.0(effect@3.19.8))(effect@3.19.8))(effect@3.19.14)
       '@effect/cluster': 0.56.1(@effect/platform@0.94.1(effect@3.19.14))(@effect/rpc@0.73.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/sql@0.49.0(@effect/experimental@0.58.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/workflow@0.16.0(@effect/experimental@0.58.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/platform@0.94.1(effect@3.19.14))(@effect/rpc@0.73.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(effect@3.19.14))(effect@3.19.14)
@@ -4577,7 +4577,6 @@ snapshots:
       '@effect/workflow': 0.16.0(@effect/experimental@0.58.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/platform@0.94.1(effect@3.19.14))(@effect/rpc@0.73.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(effect@3.19.14)
       '@typescript-eslint/utils': 8.50.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
       effect: 3.19.14
-      ts-morph: 27.0.2
     transitivePeerDependencies:
       - bufferutil
       - eslint
@@ -4800,7 +4799,7 @@ snapshots:
   '@typescript-eslint/project-service@8.48.1(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.48.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.50.1
+      '@typescript-eslint/types': 8.53.0
       debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -4808,8 +4807,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.50.1(typescript@5.9.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.50.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.50.1
+      '@typescript-eslint/tsconfig-utils': 8.53.0(typescript@5.9.3)
+      '@typescript-eslint/types': 8.53.0
       debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -4894,7 +4893,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.7.3
       tinyglobby: 0.2.15
-      ts-api-utils: 2.1.0(typescript@5.9.3)
+      ts-api-utils: 2.4.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -4927,7 +4926,7 @@ snapshots:
 
   '@typescript-eslint/utils@8.50.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.1(jiti@2.6.1))
+      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.1(jiti@2.6.1))
       '@typescript-eslint/scope-manager': 8.50.1
       '@typescript-eslint/types': 8.50.1
       '@typescript-eslint/typescript-estree': 8.50.1(typescript@5.9.3)
