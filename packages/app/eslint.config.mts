@@ -3,7 +3,7 @@
 import eslint from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
-import vitest from "eslint-plugin-vitest";
+import vitest from "@vitest/eslint-plugin";
 import suggestMembers from "@prover-coder-ai/eslint-plugin-suggest-members";
 import sonarjs from "eslint-plugin-sonarjs";
 import unicorn from "eslint-plugin-unicorn";
