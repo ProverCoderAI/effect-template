@@ -61,7 +61,7 @@
     "@eslint/compat": "2.0.1",
     "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.2",
-    "@prover-coder-ai/eslint-plugin-suggest-members": "^0.0.12",
+    "@prover-coder-ai/eslint-plugin-suggest-members": "^0.0.13",
     "@ton-ai-core/vibecode-linter": "^1.0.6",
     "@types/node": "^24.10.8",
     "@typescript-eslint/eslint-plugin": "^8.53.0",
