@@ -85,8 +85,8 @@ importers:
         specifier: 9.39.2
         version: 9.39.2
       '@prover-coder-ai/eslint-plugin-suggest-members':
-        specifier: ^0.0.12
-        version: 0.0.12(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+        specifier: ^0.0.13
+        version: 0.0.13(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@ton-ai-core/vibecode-linter':
         specifier: ^1.0.6
         version: 1.0.6
@@ -915,8 +915,8 @@ packages:
     resolution: {integrity: sha512-vWWVbYYBBN/kweokmURicokyg7crzcDZo9/naziv8B8RSWrLWFpq5Xl0ro6QCQKgRmb6O78Qy9uQT+Fp79RxsA==}
     engines: {node: '>=16.14'}
 
-  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.12':
-    resolution: {integrity: sha512-g3CWdUPVdyJUvliVJYb3FQatA6Vgg0B4+2LF6cm+l2AHMyt+akIX4i6w9lTRqLtP1O3b5sdZXisjgWCQXn+RCw==}
+  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.13':
+    resolution: {integrity: sha512-c++4RULi4J4vVc+eCfITjgSh1o3MvLRmgd1EekR2iWZLWSHuHEM0h3AKvNG+ykexl7jr8XokF3L0B51HuByfsw==}
 
   '@rollup/rollup-android-arm-eabi@4.53.3':
     resolution: {integrity: sha512-mRSi+4cBjrRLoaal2PnqH82Wqyb+d3HsPUN/W+WslCXsZsyHa9ZeQQX/pQsZaVIWDkPcpV6jJ+3KLbTbgnwv8w==}
@@ -4275,7 +4275,7 @@ snapshots:
 
   '@pnpm/deps.graph-sequencer@1.0.0': {}
 
-  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.12(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
+  '@prover-coder-ai/eslint-plugin-suggest-members@0.0.13(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@effect/cli': 0.73.0(@effect/platform@0.94.1(effect@3.19.14))(@effect/printer-ansi@0.47.0(@effect/typeclass@0.38.0(effect@3.19.14))(effect@3.19.14))(@effect/printer@0.47.0(@effect/typeclass@0.38.0(effect@3.19.14))(effect@3.19.14))(effect@3.19.14)
       '@effect/cluster': 0.56.1(@effect/platform@0.94.1(effect@3.19.14))(@effect/rpc@0.73.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/sql@0.49.0(@effect/experimental@0.58.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/workflow@0.16.0(@effect/experimental@0.58.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(@effect/platform@0.94.1(effect@3.19.14))(@effect/rpc@0.73.0(@effect/platform@0.94.1(effect@3.19.14))(effect@3.19.14))(effect@3.19.14))(effect@3.19.14)
