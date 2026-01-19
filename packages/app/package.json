@@ -35,7 +35,7 @@
     "url": "https://github.com/ProverCoderAI/effect-template/issues"
   },
   "homepage": "https://github.com/ProverCoderAI/effect-template#readme",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.1",
   "dependencies": {
     "@effect/cli": "^0.73.0",
     "@effect/cluster": "^0.56.1",
@@ -64,9 +64,9 @@
     "@prover-coder-ai/eslint-plugin-suggest-members": "^0.0.13",
     "@ton-ai-core/vibecode-linter": "^1.0.6",
     "@types/node": "^24.10.9",
-    "@typescript-eslint/eslint-plugin": "^8.53.0",
-    "@typescript-eslint/parser": "^8.53.0",
-    "typescript-eslint": "^8.53.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@typescript-eslint/parser": "^8.53.1",
+    "typescript-eslint": "^8.53.1",
     "@vitest/coverage-v8": "^4.0.17",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
