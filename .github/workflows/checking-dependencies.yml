@@ -1,9 +1,11 @@
 name: Dist Deps Prune
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   dist-deps-prune:
