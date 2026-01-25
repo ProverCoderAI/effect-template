@@ -1,0 +1,27 @@
+name: Dist Deps Prune
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  dist-deps-prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -C packages/eslint-template build
+
+      - name: Dist deps prune (lint)
+        run: |
+          pnpm dlx @prover-coder-ai/dist-deps-prune scan \
+            --package ./packages/app/package.json \
+            --prune-dev true \
+            --silent
