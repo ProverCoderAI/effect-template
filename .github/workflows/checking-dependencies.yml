@@ -1,4 +1,4 @@
-name: Dist Deps Prune
+name: Checking Dependencies
 
 on:
   workflow_dispatch:
