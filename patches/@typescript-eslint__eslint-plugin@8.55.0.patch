@@ -1,0 +1,26 @@
+diff --git a/dist/rules/consistent-generic-constructors.js b/dist/rules/consistent-generic-constructors.js
+index 9977214d04d64cdbc3a90fc2a9f9f9e39572dbf4..c9b1fc79e198138b62f9333722068fc0cd7f2a86 100644
+--- a/dist/rules/consistent-generic-constructors.js
++++ b/dist/rules/consistent-generic-constructors.js
+@@ -98,7 +98,7 @@ exports.default = (0, util_1.createRule)({
+                     }
+                     return;
+                 }
+-                const isolatedDeclarations = context.parserOptions.isolatedDeclarations;
++                const isolatedDeclarations = context.languageOptions?.parserOptions?.isolatedDeclarations ?? context.parserOptions?.isolatedDeclarations;
+                 if (!isolatedDeclarations && lhs?.typeArguments && !rhs.typeArguments) {
+                     const hasParens = context.sourceCode.getTokenAfter(rhs.callee)?.value === '(';
+                     const extraComments = new Set(context.sourceCode.getCommentsInside(lhs.parent));
+diff --git a/dist/rules/no-deprecated.js b/dist/rules/no-deprecated.js
+index 293d007ba9ef084f622f9e8da7c763ea02a17fa4..6d53d6181877005b3645bcaa030344954f195d8a 100644
+--- a/dist/rules/no-deprecated.js
++++ b/dist/rules/no-deprecated.js
+@@ -69,7 +69,7 @@ exports.default = (0, util_1.createRule)({
+         },
+     ],
+     create(context, [options]) {
+-        const { jsDocParsingMode } = context.parserOptions;
++        const { jsDocParsingMode } = (context.languageOptions?.parserOptions ?? context.parserOptions ?? {});
+         const allow = options.allow;
+         if (jsDocParsingMode === 'none' || jsDocParsingMode === 'type-info') {
+             throw new Error(`Cannot be used with jsDocParsingMode: '${jsDocParsingMode}'.`);

@@ -43,6 +43,9 @@
       "@parcel/watcher",
       "msgpackr-extract",
       "unrs-resolver"
-    ]
+    ],
+    "patchedDependencies": {
+      "@typescript-eslint/eslint-plugin@8.55.0": "patches/@typescript-eslint__eslint-plugin@8.55.0.patch"
+    }
   }
 }
