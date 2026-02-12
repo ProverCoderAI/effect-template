@@ -1,6 +1,6 @@
 {
   "name": "@effect-template/app",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Minimal Vite-powered TypeScript console starter using Effect",
   "main": "dist/main.js",
   "directories": {
