@@ -48,7 +48,7 @@ jobs:
           npm pack --silent --pack-destination ../../artifacts
       - name: Upload snapshot artifacts
         if: steps.snapshot.outputs.success != 'true'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: context-doc-snapshot
           path: artifacts/*.tgz
